@@ -91,6 +91,33 @@ body{
     margin-bottom:22px;
 }
 
+.mensagem-erro{
+
+    /* Escondida por padrão: só aparece quando o JS adiciona a classe "visivel" */
+    display:none;
+
+    color:#B91C1C;
+
+    background:#FEE2E2;
+
+    border:1px solid #FCA5A5;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    padding:10px 14px;
+
+    margin-top:-8px;
+
+    margin-bottom:16px;
+}
+
+.mensagem-erro.visivel{
+
+    display:block;
+}
+
 .input-group label{
 
     display:block;
@@ -274,6 +301,15 @@ body.dark .logo p{
 body.dark .input-group label{
 
     color:#CBD5E1;
+}
+
+body.dark .mensagem-erro{
+
+    color:#FCA5A5;
+
+    background:#450A0A;
+
+    border:1px solid #7F1D1D;
 }
 
 /* Inputs */
