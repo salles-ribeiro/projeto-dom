@@ -97,26 +97,30 @@ function darkmode() {
 }
 
 function login(usuarios) {
-    let email = document.querySelector('#email').value
-    let senha = document.querySelector('#senha').value
+    let emailDigitado = document.querySelector('#email').value
+    let senhaDigitada = document.querySelector('#senha').value
 
-    let usuarioEncontrado = usuarios.find((usuario) => email === usuario.email && senha === usuario.senha)
+    let usuarioEncontrado = usuarios.find(
+        (usuario) => emailDigitado === usuario.email && senhaDigitada === usuario.senha
+    )
 
-   if(usuarioEncontrado === undefined) {
-    let containerSenha = document.querySelector('#container-senha')
-    let usuarioNaoEncontradoP = document.querySelector('.vermelho')
+    // Elemento fixo no HTML: reaproveitado a cada tentativa em vez de criar
+    // um <p> novo, para a mensagem de erro não se acumular na tela.
+    let mensagemErroElemento = document.querySelector('#mensagem-erro-login')
 
-    if (usuarioNaoEncontradoP === null) {
-    let p = document.createElement('p')
-    p.innerText = 'Usuário nao encontrado'
-    p.classList.add('vermelho')
-    containerSenha.appendChild(p)
-   return
-  }
+  
+   // Mensagem genérica (não diz se o e-mail existe ou só a senha está errada)
+   // para não permitir descobrir quais e-mails estão cadastrados.
+   // Classe "visivel" liga a caixa vermelha (ver style.css); assim a caixa
+   // só ocupa espaço na tela quando existe de fato um erro para mostrar.
+    if (usuarioEncontrado === undefined) {  
+        mensagemErroElemento.innerText = 'Usuário ou senha inválidos'
+        mensagemErroElemento.classList.add('visivel')
+        return
+    }
 
-
+    mensagemErroElemento.innerText = ''
+    mensagemErroElemento.classList.remove('visivel')
+    window.location.href = 'https://www.google.com/?hl=pt_BR'
 }
-if(usuarioEncontrado) {
-window.location.href = '../dashboard/dashboard.html'
-}
-}
+
